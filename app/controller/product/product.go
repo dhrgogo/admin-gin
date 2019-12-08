@@ -20,7 +20,6 @@ func Add(c *gin.Context) {
 		utilGin.Response(-1, e.Error(), nil)
 		return
 	}
-
 	// 参数验证
 	validate := validator.New()
 

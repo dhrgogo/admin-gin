@@ -33,11 +33,11 @@ func main() {
 	}
 
 	fmt.Println("")
-	fmt.Println("go-gin-admin-api")
-	fmt.Println("|-----------------------------------|")
+	fmt.Println("")
+	fmt.Println("|***********************************|")
 	fmt.Println("|  Go Http Server Start Successful  |")
 	fmt.Println("|    Port" + config.AppPort + "     Pid:" + fmt.Sprintf("%d", os.Getpid()) + "        |")
-	fmt.Println("|-----------------------------------|")
+	fmt.Println("|***********************************|")
 	fmt.Println("")
 
 	go func() {

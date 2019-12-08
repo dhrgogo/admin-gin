@@ -29,7 +29,7 @@ type FormData struct {
 func UserCreat(this *gin.Context) {
 
 	formDb := &FormData{
-		Age:      13,
+		Age:      18,
 		Password: "11",
 		Post:     "11",
 		//us.Birthday       = this.PostForm("birthday")

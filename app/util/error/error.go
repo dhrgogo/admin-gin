@@ -1,12 +1,14 @@
 package error
 
 import (
+	"admin-gin/app/config"
+	"admin-gin/app/route/middleware/exception"
+	"admin-gin/app/util/response"
 	"fmt"
+	"github.com/gin-gonic/gin"
 	"github.com/xinliangnote/go-util/json"
 	"github.com/xinliangnote/go-util/mail"
 	timeUtil "github.com/xinliangnote/go-util/time"
-	"go-gin-api/app/config"
-	"go-gin-api/app/route/middleware/exception"
 	"log"
 	"os"
 	"runtime/debug"
@@ -22,8 +24,10 @@ func (e *errorString) Error() string {
 	return e.s
 }
 
-func ErrorNew(text string) error {
+func ErrorNew(text string, this *gin.Context) error {
+	utilGin := response.Gin{Ctx: this}
 	alarm("INFO", text)
+	utilGin.Response(1000, text, nil)
 	return &errorString{text}
 }
 
@@ -82,7 +86,6 @@ func alarm(level string, str string) {
 
 	} else if level == "INFO" {
 		// 执行记日志
-
 		if f, err := os.OpenFile(config.AppErrorLogName, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0666); err != nil {
 			log.Println(err)
 		} else {

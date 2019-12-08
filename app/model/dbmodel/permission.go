@@ -8,7 +8,7 @@ import (
 
 // 权限表
 type Permission struct {
-	Id                   int64  `xorm:"autoincr pk" json:"id"`
+	Id                   int64  `xorm:"pk autoincr unique notnull" json:"id,omitempty"`
 	Permission_unique_id string `xorm:"pk varchar(32) notnull unique" json:"permission_unique_id" description:"权限id"`
 	Permission_name      string `xorm:"varchar(32) notnull unique" json:"permission_name" description:"名字"`
 	PermissionDesc       string `xorm:"varchar(32)" json:"permissionDesc" description:"描述"`

@@ -66,6 +66,8 @@ func init() {
 		new(Role),
 		new(User),
 		new(UserRole),
+		new(Permission),
+		new(RolePermissions),
 	)
 	err = X.Sync2(AllTables...)
 	if err != nil {

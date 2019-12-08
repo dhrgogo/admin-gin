@@ -60,7 +60,28 @@ func SetupRouter(engine *gin.Engine) {
 		// 测试 RSA 的性能
 		TestRouter.GET("/rsa", test.RsaTest)
 	}
+	// 管理端 数据库操作
+	ManageRouter := engine.Group("/manage")
+	{
+		// 创建用户
+		ManageRouter.POST("/login", admin.Login)
+		// 更新用户
+		ManageRouter.PUT("/user/:unique_id", admin.UserUpdate)
+		//获取单个用户
+		ManageRouter.GET("/user/:id", admin.UserObj)
+		// 用户列表
+		ManageRouter.GET("/user", admin.UserList)
 
+		// 创建角色
+		ManageRouter.POST("/role", admin.RoleCreat)
+		// 更新角色
+		ManageRouter.PUT("/role/:unique_id", admin.RoleUpdate)
+		// 根绝唯一id获取角色
+		ManageRouter.GET("/role/:unique_id", admin.RoleObj)
+		// 获取角色列表
+		ManageRouter.GET("/role", admin.RoleList)
+
+	}
 	// 管理端 数据库操作
 	AdminRouter := engine.Group("/admin")
 	{
